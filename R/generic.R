@@ -51,7 +51,7 @@
 #' @aliases format_item_list_en
 #' @export
 step_1_inversion<-function(items_df, all_except_infix = all_except_infix_fn_pl, item_numeral,
-                           threshold_for_inversion=0.8, step_2_ellipsis,
+                           threshold_for_inversion=0.8, step_2_ellipsis, flag_prevent_ellipsis_on_inversion=TRUE,
                            included_column_name=paste0(getOption('special_column_prefix'), getOption('includes_column_name')))
 {
   checkmate::assert_data_table(items_df, types = c('logical', 'integerish', 'numeric', 'character', 'factor', 'list'), null.ok = FALSE)
@@ -68,8 +68,15 @@ step_1_inversion<-function(items_df, all_except_infix = all_except_infix_fn_pl, 
     includes<-items_df[[included_column_name]]
     checkmate::assert_logical(includes, any.missing = FALSE)
     if(sum(includes)/length(includes) > threshold_for_inversion) {
-      items_df<-data.table:::subset.data.table(items_df, !includes, select = setdiff(colnames(items_df), included_column_name))
-      prefix<-all_except_infix(item_numeral=item_numeral, all_items_count=length(includes), selected_items_count=sum(includes))
+      env<-environment(step_2_ellipsis)
+      ellipsis_max_explicit_items_count<-env$max_explicit_items_count
+      if(flag_prevent_ellipsis_on_inversion && sum(includes)>ellipsis_max_explicit_items_count) {
+        items_df<-data.table:::subset.data.table(items_df, includes, select = setdiff(colnames(items_df), included_column_name))
+        prefix<-''
+      } else {
+        items_df<-data.table:::subset.data.table(items_df, !includes, select = setdiff(colnames(items_df), included_column_name))
+        prefix<-all_except_infix(item_numeral=item_numeral, all_items_count=length(includes), selected_items_count=sum(includes))
+      }
     } else {
       items_df<-data.table:::subset.data.table(items_df, includes, select = setdiff(colnames(items_df), included_column_name))
       prefix<-''
@@ -128,19 +135,19 @@ step_2_ellipsis_gen<-function(item_ellipsis=item_ellipsis_fn_en,
     if(nrow(items_df)>max_explicit_items_count) {
       #We need to use the ellipsis
       left_rows<-seq_len(number_of_elements_around_ellipsis[[1]])
-      left_df<-items_df[left_rows,]
+      left_df<-items_df[left_rows,,drop=FALSE]
 
       right_rows<-seq(nrow(items_df)-number_of_elements_around_ellipsis[[2]]+1, nrow(items_df))
       if(number_of_elements_around_ellipsis[[2]]==0){
         right_rows<-integer(0)
       }
-      right_df<-items_df[right_rows,]
+      right_df<-items_df[right_rows,,drop=FALSE]
 
       middle_rows<-seq(number_of_elements_around_ellipsis[[1]]+1, nrow(items_df)-number_of_elements_around_ellipsis[[2]])
       if(sum(number_of_elements_around_ellipsis)>=nrow(items_df)) {
         browser()
       }
-      middle_df<-items_df[middle_rows,]
+      middle_df<-items_df[middle_rows,,drop=FALSE]
 
       ansl<-step3_comma_list(left_df)
       ansm<-item_ellipsis(item_numeral=item_numeral, all_items_count=nrow(items_df), selected_items_count=nrow(middle_df))
@@ -244,6 +251,20 @@ step_4_display_item_gen<-function(txt_attribute_separator=', ', txt_attribute_se
     }
     rownr_ext<-rownr
     items_df_ext<-items_df
+    flag_attr_exist=FALSE
+    for(i in seq_along(mappings)) {
+      name<-names(mappings)[[i]]
+      value<-items_df[[name]][[rownr]]
+      if(!is.na(value)) {
+        if(value!='') {
+          flag_attr_exist<-TRUE
+          break
+        }
+      }
+    }
+    if(!flag_attr_exist) {
+      return(out) #No actual attributes, although columns exist
+    }
     attr_display_step_5_fn<-function(items_df, rownr)
     {
       #For speed we ignore the items_df_ext and use the parent's environment source.
@@ -280,12 +301,17 @@ step_5_display_single_item<-function(value, properties) {
   }
   label<-properties$label
   if(!is.null(label)) {
-    quotes<-properties$label_quote
-    if(is.null(quotes)) {
-      quotes<-''
+    if(label!='') {
+      quotes<-properties$label_quote
+      if(is.null(quotes)) {
+        quotes<-''
+      }
+      value<-label
+    } else {
+      label<-NULL
     }
-    value<-label
-  } else {
+  }
+  if(is.null(label))  {
     quotes<-properties$bare_quote
     if(is.character(value)) {
       if(is.null(quotes)) {
