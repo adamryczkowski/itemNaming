@@ -112,7 +112,7 @@ variable_list_formatter_df_gen<-function(df, variable_numeral=English_numeral$ne
   return(out_gen)
 }
 
-case_list_formatter_df_gen<-function(df, case_name_var=NULL, attr_rows=character(0),  variable_numeral=English_numeral$new(singular='case', plural='cases', flag_skip_one=FALSE),
+case_list_formatter_df_gen<-function(df, case_name_var=NULL, case_names=NULL, attr_rows=character(0),  variable_numeral=English_numeral$new(singular='case', plural='cases', flag_skip_one=FALSE),
                                          flag_include_raw_name=TRUE,
                                          all_except_infix_fn=all_except_infix_fn_en, threshold_for_inversion=0.8,
                                          item_ellipsis_fn=item_ellipsis_fn_en, max_explicit_items_count=7, number_of_elements_around_ellipsis=c(3,2),
@@ -130,15 +130,24 @@ case_list_formatter_df_gen<-function(df, case_name_var=NULL, attr_rows=character
                                       txt_attribute_infix = txt_attribute_infix)
 
   if(!is.null(case_name_var)) {
+    checkmate::assert_string(case_name_var)
+    if(!is.null(case_names)) {
+      stop("Cannot take both case_name_var and case_names arguments.")
+    }
     if(!case_name_var %in% colnames(df)){
       browser()
     }
     case_names<-df[[case_name_var]]
+  } else if(!is.null(case_names)) {
+    checkmate::assert_character(case_names, unique = TRUE)
+    if(length(case_names)!=nrow(df)) {
+      stop("case_names must have the same length as number of rows in df")
+    }
   } else {
     case_names<-case.names(df)
   }
 
-  items_df<-data.table(cases=case_names)
+  items_df<-data.table::data.table(cases=case_names)
   attr_rows<-attr_rows[colnames(df) %in% attr_rows]
   if(length(attr_rows)>0) {
     #Adding other columns as custom attributes
