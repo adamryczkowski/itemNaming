@@ -1,3 +1,4 @@
+#' @export
 format_values<-function(values)
 {
   if(!is.null(attr(values,'verbatim', exact = TRUE))) {
@@ -21,12 +22,14 @@ get_decorations<-function(values, default='') {
   return(ans)
 }
 
+#' @export
 format_values.character<-function(values)
 {
   decors<-get_decorations(values,'')
   return(paste0(decors[[1]], values, decors[[2]]))
 }
 
+#' @export
 format_values.integer<-function(values)
 {
   decors<-get_decorations(values,'')
@@ -43,6 +46,7 @@ decimalplaces <- function(x_in) {
               0)
 }
 
+#' @export
 format_values.numeric<-function(values)
 {
   dp<-decimalplaces(values)
@@ -59,6 +63,7 @@ format_values.numeric<-function(values)
   return(paste0(decors[[1]], int_str, decors[[2]]))
 }
 
+#' @export
 format_values.Date<-function(values)
 {
   decors<-get_decorations(values,'')
@@ -69,6 +74,7 @@ format_values.Date<-function(values)
   return(ans)
 }
 
+#' @export
 format_values.factor<-function(values)
 {
   #  browser()
@@ -81,6 +87,7 @@ format_values.factor<-function(values)
   return(sprintf(fmt, values, labels))
 }
 
+#' @export
 format_values.labelled<-function(values)
 {
   #  browser()
