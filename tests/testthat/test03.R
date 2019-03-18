@@ -9,10 +9,10 @@ library(testthat)
 
 testthat::test_that("Simple test for 4th step", {
 #Displays a single item with the list of attributes
-  step_4_display_item<-step_4_display_item_gen(txt_attribute_separator=', ', txt_attribute_separator_last=' and ',
+  step_4_display_item<-itemNaming:::step_4_display_item_gen(txt_attribute_separator=', ', txt_attribute_separator_last=' and ',
                                     txt_attribute_prefix=' (', txt_attribute_suffix=')',
                                     txt_attribute_bare_quote = '`', txt_attribute_label_quote = '', txt_attribute_infix = ':\uA0',
-                                    step_5_display_element=step_5_display_single_item)
+                                    step_5_display_element=itemNaming:::step_5_display_single_item)
 
 
   items_df<-data.table::data.table(
@@ -25,18 +25,18 @@ testthat::test_that("Simple test for 4th step", {
     waga=c(30, 83, 75, NA))
 
   out<-step_4_display_item(items_df = items_df, rownr = 1)
-  testthat::expect_equal(out, 'Mikołaj (`hue`: `Zielony`, `wzrost`: 135 and `waga`: 30)')
+  testthat::expect_equal(out, 'Mikołaj (`hue`:\u{A0}`Zielony`, `wzrost`:\u{A0}135 and `waga`:\u{A0}30)')
 })
 
 
 testthat::test_that("Simple test for 3th step", {
   #Displays a single item with the list of attributes
-  step_4_display_item<-step_4_display_item_gen(txt_attribute_separator=', ', txt_attribute_separator_last=' and ',
+  step_4_display_item<-itemNaming:::step_4_display_item_gen(txt_attribute_separator=', ', txt_attribute_separator_last=' and ',
                                                txt_attribute_prefix=' (', txt_attribute_suffix=')',
                                                txt_attribute_bare_quote = '`', txt_attribute_label_quote = '', txt_attribute_infix = ':\uA0',
-                                               step_5_display_element=step_5_display_single_item)
+                                               step_5_display_element=itemNaming:::step_5_display_single_item)
 
-  step_3_comma<-step_3_comma_gen(txt_separator=', ', txt_separator_last = ' & ', display_item_fn=step_4_display_item)
+  step_3_comma<-itemNaming:::step_3_comma_gen(txt_separator=', ', txt_separator_last = ' & ', display_item_fn=step_4_display_item)
 
   items_df<-data.table::data.table(
     item=c('Mik', 'Wika', 'Adam', 'Zoś'),
@@ -48,28 +48,28 @@ testthat::test_that("Simple test for 3th step", {
     waga=c(30, 83, 75, NA))
 
   out<-step_3_comma(items_df)
-  testthat::expect_equal(out, "Mikołaj (`hue`: `Zielony`, `wzrost`: 135 and `waga`: 30), `Wika` (`NA`, 157 and 83), `Adam` (`NA`, 171 and 75) & Sofia (`Czerwony`, 87 and NA)")
+  testthat::expect_equal(out, "Mikołaj (`hue`:\u{A0}`Zielony`, `wzrost`:\u{A0}135 and `waga`:\u{A0}30), `Wika` (`NA`, 157 and 83), `Adam` (`NA`, 171 and 75) & Sofia (`Czerwony`, 87 and NA)")
 
 
   out<-step_4_display_item(items_df = items_df, rownr = 1)
-  testthat::expect_equal(out, 'Mikołaj (`hue`: `Zielony`, `wzrost`: 135 and `waga`: 30)')
+  testthat::expect_equal(out, 'Mikołaj (`hue`:\u{A0}`Zielony`, `wzrost`:\u{A0}135 and `waga`:\u{A0}30)')
 })
 
 
 testthat::test_that("Simple test for 1st step", {
   #Displays a single item with the list of attributes
-  step_4_display_item<-step_4_display_item_gen(txt_attribute_separator=', ', txt_attribute_separator_last=' and ',
+  step_4_display_item<-itemNaming:::step_4_display_item_gen(txt_attribute_separator=', ', txt_attribute_separator_last=' and ',
                                                txt_attribute_prefix=' (', txt_attribute_suffix=')',
                                                txt_attribute_bare_quote = '`', txt_attribute_label_quote = '', txt_attribute_infix = ':\uA0',
-                                               step_5_display_element=step_5_display_single_item)
+                                               step_5_display_element=itemNaming:::step_5_display_single_item)
 
-  step_3_comma<-step_3_comma_gen(txt_separator=', ', txt_separator_last = ' & ', display_item_fn=step_4_display_item)
+  step_3_comma<-itemNaming:::step_3_comma_gen(txt_separator=', ', txt_separator_last = ' & ', display_item_fn=step_4_display_item)
 
-  step_2_ellipsis<-step_2_ellipsis_gen(item_ellipsis=item_ellipsis_fn_en,
+  step_2_ellipsis<-itemNaming:::step_2_ellipsis_gen(item_ellipsis=itemNaming:::item_ellipsis_fn_en,
                                        max_explicit_items_count=3, number_of_elements_around_ellipsis=c(2,1),
                                        step_3_comma)
-  item_numeral<-English_numeral$new(singular='family member', plural='family members',
-                                              number_format_fn=format_integer, flag_skip_one = FALSE)
+  item_numeral<-itemNaming:::English_numeral$new(singular='family member', plural='family members',
+                                              number_format_fn=itemNaming:::format_integer, flag_skip_one = FALSE)
 
 
   items_df<-data.table::data.table(
@@ -83,20 +83,20 @@ testthat::test_that("Simple test for 1st step", {
 
 #  debugonce(step_2_ellipsis)
   out<-step_2_ellipsis(items_df,item_numeral)
-  testthat::expect_equal(out, "Mikołaj (`hue`: `Zielony`, `wzrost`: 135 and `waga`: 30) & `Wika` (`NA`, 157 and 83), 1 family member more, Sofia (`hue`: `Czerwony`, `wzrost`: 87 and `waga`: NA)")
+  testthat::expect_equal(out, "Mikołaj (`hue`:\u{A0}`Zielony`, `wzrost`:\u{A0}135 and `waga`:\u{A0}30) & `Wika` (`NA`, 157 and 83), 1 family member more, Sofia (`hue`:\u{A0}`Czerwony`, `wzrost`:\u{A0}87 and `waga`:\u{A0}NA)")
 })
 
 
 testthat::test_that("Simple test for 2nd step", {
   #Displays a single item with the list of attributes
-  step_4_display_item<-step_4_display_item_gen(txt_attribute_separator=', ', txt_attribute_separator_last=' and ',
+  step_4_display_item<-itemNaming:::step_4_display_item_gen(txt_attribute_separator=', ', txt_attribute_separator_last=' and ',
                                                txt_attribute_prefix=' (', txt_attribute_suffix=')',
                                                txt_attribute_bare_quote = '`', txt_attribute_label_quote = '', txt_attribute_infix = ':\uA0',
-                                               step_5_display_element=step_5_display_single_item)
+                                               step_5_display_element=itemNaming:::step_5_display_single_item)
 
-  step_3_comma<-step_3_comma_gen(txt_separator=', ', txt_separator_last = ' & ', display_item_fn=step_4_display_item)
+  step_3_comma<-itemNaming:::step_3_comma_gen(txt_separator=', ', txt_separator_last = ' & ', display_item_fn=step_4_display_item)
 
-  step_2_ellipsis<-step_2_ellipsis_gen(item_ellipsis=item_ellipsis_fn_en,
+  step_2_ellipsis<-itemNaming:::step_2_ellipsis_gen(item_ellipsis=itemNaming:::item_ellipsis_fn_en,
                                        max_explicit_items_count=3, number_of_elements_around_ellipsis=c(2,1),
                                        step_3_comma)
   items_df<-data.table::data.table(
@@ -109,14 +109,14 @@ testthat::test_that("Simple test for 2nd step", {
     waga=c(30, 83, 75, NA),
     '__included'=c(TRUE, TRUE, FALSE, TRUE))
 
-  item_numeral<-English_numeral$new(singular='family member', plural='family members',
-                                    number_format_fn=format_integer, flag_skip_one = FALSE)
-  debugonce(step_1_inversion)
-  out<-step_1_inversion(items_df, all_except_infix = all_except_infix_fn_en, item_numeral=item_numeral,
+  item_numeral<-itemNaming:::English_numeral$new(singular='family member', plural='family members',
+                                    number_format_fn=itemNaming:::format_integer, flag_skip_one = FALSE)
+  #debugonce(step_1_inversion)
+  out<-itemNaming:::step_1_inversion(items_df, all_except_infix = itemNaming:::all_except_infix_fn_en, item_numeral=item_numeral,
                         threshold_for_inversion=0.1, step_2_ellipsis, included_column_name='__included')
 
 
 
   #  debugonce(step_2_ellipsis)
-  testthat::expect_equal(out, "all family members except for `Adam` (`hue`: `NA`, `wzrost`: 171 and `waga`: 75)")
+  testthat::expect_equal(out, "all family members except for `Adam` (`hue`:\u{A0}`NA`, `wzrost`:\u{A0}171 and `waga`:\u{A0}75)")
 })

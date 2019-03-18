@@ -51,7 +51,7 @@ format_values.numeric<-function(values)
     if(is.na(values[[i]])) {
       int_str[[i]]<-haven::format_tagged_na(values[[i]])
     } else {
-      int_str[[i]]<-formattable::comma(values[[i]], big.mark='\uA0', digits=dp)
+      int_str[[i]]<-as.character(formattable::comma(values[[i]], big.mark='\uA0', digits=dp))
     }
   }
 

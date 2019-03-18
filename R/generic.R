@@ -49,7 +49,7 @@
 #'
 #'
 #' @aliases format_item_list_en
-#' @export
+#'
 step_1_inversion<-function(items_df, all_except_infix = all_except_infix_fn_pl, item_numeral,
                            threshold_for_inversion=0.8, step_2_ellipsis, flag_prevent_ellipsis_on_inversion=TRUE,
                            included_column_name=paste0(getOption('special_column_prefix'), getOption('includes_column_name')))
