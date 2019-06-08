@@ -38,7 +38,7 @@ case_list_formatter_df_gen(df, case_name_var = NULL, case_names = NULL,
 
 \item{txt_attribute_suffix}{String that gets pasted at the beginning of the attribute list. Defaults to ")".}
 
-\item{txt_attribute_bare_quote}{If the attribute name is available only in its internal name (its label is not specified), this string will get pasted before and after. Defaults to markdown code "`". This may be extended in future to allow formatting in different markup languages, which don't use symmetric quotes, like LaTeX (\code{"\verbatim{}" and \code{"}"}).}
+\item{txt_attribute_bare_quote}{If the attribute name is available only in its internal name (its label is not specified), this string will get pasted before and after. Defaults to markdown code "`". This may be extended in future to allow formatting in different markup languages, which don't use symmetric quotes, like LaTeX (\code{"\\verbatim{"} and \\code{"}"}).}
 
 \item{txt_attribute_label_quote}{The same as \code{txt_attribute_bare_quote} but for labelled attributes. Defaults to empty string.}
 
