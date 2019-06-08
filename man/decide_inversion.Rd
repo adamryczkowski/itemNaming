@@ -34,6 +34,23 @@ Columns with names that start with underscore followed by name of the existing c
 
 \item{all_except_infix}{String that will be prefixed before inversed mode. Defaults to \code{'all #item_name_plural except for '}}
 
+\item{attribute_prefix}{String that will be put before the list of attributes. Defaults to \code{'\uA0('}}
+
+\item{attribute_sufix}{String that will be put before the list of attributes. Defaults to \code{')'}}
+
+\item{attribute_comma}{String that will put between attributes in the list of the attributes. Defaults to \code{', '}}
+
+\item{attribute_and}{String that will put between the last two attributes in the attributes' list. Defaults to \code{' and\uA0'}}
+
+\item{item_comma}{String that will put between items. Defaults to \code{', '}}
+
+\item{item_and}{String that will put between the last two items. Defaults to \code{' and\uA0'}}
+
+\item{item_ellipsis}{Function that will emit string that be put in place of the ommited items, when rendering in ellipsis mode. The function will get the following arguments: \code{total_count}, \code{omited_count}, \code{item_numeral}. Defaults to function that renders string ", and 5 more items".
+Possible fields: \code{#item_count_full} - number of ommited elements together with word "item" (customizable elsewhere).
+\code{#item_count_full_more} - number of ommited elements together with phrase "more items", like in "34 more item".
+\code{#item_count_raw} - just integer with number of ommited elements.}
+
 \item{item_name}{Vector of two strings that name singular and plural name of the item. Defaults to \code{c('item','items')}.}
 
 \item{max_explicit_items_count}{Maximum number of explicit items. -1 is infinity. If number of items in the items_df exceeds that number, function will use

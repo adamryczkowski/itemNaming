@@ -28,16 +28,16 @@
 #'   \item{suffix}{String appended behind the item. Can be used to add Markdown quotes \code{'`'}}
 #'   \item{}
 #' }
-#' @param attribute_prefix String that will be put before the list of attributes. Defaults to \code{'\uA0('}}
-#' @param attribute_sufix String that will be put before the list of attributes. Defaults to \code{')'}}
-#' @param attribute_comma String that will put between attributes in the list of the attributes. Defaults to \code{', '}}
-#' @param attribute_and String that will put between the last two attributes in the attributes' list. Defaults to \code{' and\uA0'}}
-#' @param item_comma String that will put between items. Defaults to \code{', '}}
-#' @param item_and String that will put between the last two items. Defaults to \code{' and\uA0'}}
-#' @param item_ellipsis Function that will emit string that be put in place of the ommited items, when rendering in ellipsis mode. The function will get the following arguments: \code{total_count}, \code{omited_count}, \code{item_numeral}. Defaults to function that renders string ", and 5 more items"}.
+#' @param attribute_prefix String that will be put before the list of attributes. Defaults to \code{'\\uA0('}
+#' @param attribute_sufix String that will be put before the list of attributes. Defaults to \code{')'}
+#' @param attribute_comma String that will put between attributes in the list of the attributes. Defaults to \code{', '}
+#' @param attribute_and String that will put between the last two attributes in the attributes' list. Defaults to \code{' and\\uA0'}
+#' @param item_comma String that will put between items. Defaults to \code{', '}
+#' @param item_and String that will put between the last two items. Defaults to \code{' and\\uA0'}
+#' @param item_ellipsis Function that will emit string that be put in place of the ommited items, when rendering in ellipsis mode. The function will get the following arguments: \code{total_count}, \code{omited_count}, \code{item_numeral}. Defaults to function that renders string ", and 5 more items".
 #'                      Possible fields: \code{#item_count_full} - number of ommited elements together with word "item" (customizable elsewhere).
 #'                      \code{#item_count_full_more} - number of ommited elements together with phrase "more items", like in "34 more item".
-#'                      \code{#item_count_raw} - just integer with number of ommited elements.}
+#'                      \code{#item_count_raw} - just integer with number of ommited elements.
 #' @param all_except_infix Function that returns string that will be prefixed before inversed mode. Defaults to \code{'all #item_name_plural except for '}.
 #'                         Function takes arguments: \code{item_numeral}, \code{all_items_count}, \code{selected_items_count}.
 #' @param item_name Vector of two strings that name singular and plural name of the item. Defaults to \code{c('item','items')}.
@@ -413,16 +413,16 @@ format_item_list_en<-function(items, field_attributes, colname_with_includes=NUL
 #'   \item{suffix}{String appended behind the item. Can be used to add Markdown quotes \code{'`'}}
 #'   \item{}
 #' }
-#' @param attribute_prefix String that will be put before the list of attributes. Defaults to \code{'\uA0('}}
-#' @param attribute_sufix String that will be put before the list of attributes. Defaults to \code{')'}}
-#' @param attribute_comma String that will put between attributes in the list of the attributes. Defaults to \code{', '}}
-#' @param attribute_and String that will put between the last two attributes in the attributes' list. Defaults to \code{' and\uA0'}}
-#' @param item_comma String that will put between items. Defaults to \code{', '}}
-#' @param item_and String that will put between the last two items. Defaults to \code{' and\uA0'}}
-#' @param item_ellipsis Function that will emit string that be put in place of the ommited items, when rendering in ellipsis mode. The function will get the following arguments: \code{total_count}, \code{omited_count}, \code{item_numeral}. Defaults to function that renders string ", and 5 more items"}.
+#' @param attribute_prefix String that will be put before the list of attributes. Defaults to \code{'\uA0('}
+#' @param attribute_sufix String that will be put before the list of attributes. Defaults to \code{')'}
+#' @param attribute_comma String that will put between attributes in the list of the attributes. Defaults to \code{', '}
+#' @param attribute_and String that will put between the last two attributes in the attributes' list. Defaults to \code{' and\uA0'}
+#' @param item_comma String that will put between items. Defaults to \code{', '}
+#' @param item_and String that will put between the last two items. Defaults to \code{' and\uA0'}
+#' @param item_ellipsis Function that will emit string that be put in place of the ommited items, when rendering in ellipsis mode. The function will get the following arguments: \code{total_count}, \code{omited_count}, \code{item_numeral}. Defaults to function that renders string ", and 5 more items".
 #'                      Possible fields: \code{#item_count_full} - number of ommited elements together with word "item" (customizable elsewhere).
 #'                      \code{#item_count_full_more} - number of ommited elements together with phrase "more items", like in "34 more item".
-#'                      \code{#item_count_raw} - just integer with number of ommited elements.}
+#'                      \code{#item_count_raw} - just integer with number of ommited elements.
 #' @param all_except_infix String that will be prefixed before inversed mode. Defaults to \code{'all #item_name_plural except for '}
 #' @param item_name Vector of two strings that name singular and plural name of the item. Defaults to \code{c('item','items')}.
 #' @param max_explicit_items_count Maximum number of explicit items. -1 is infinity. If number of items in the items_df exceeds that number, function will use
