@@ -29,7 +29,6 @@ Columns with names that start with underscore followed by name of the existing c
   \item{included}{Boolean that determines whether a given item should be included in the list. This allows for the inverted string ("all cases except for ...")}
   \item{prefix}{String appended before the item. Can be used to add Markdown quotes \code{'`'}}
   \item{suffix}{String appended behind the item. Can be used to add Markdown quotes \code{'`'}}
-  \item{}
 }}
 
 \item{all_except_infix}{String that will be prefixed before inversed mode. Defaults to \code{'all #item_name_plural except for '}}

@@ -26,7 +26,6 @@
 #'   \item{included}{Boolean that determines whether a given item should be included in the list. This allows for the inverted string ("all cases except for ...")}
 #'   \item{prefix}{String appended before the item. Can be used to add Markdown quotes \code{'`'}}
 #'   \item{suffix}{String appended behind the item. Can be used to add Markdown quotes \code{'`'}}
-#'   \item{}
 #' }
 #' @param attribute_prefix String that will be put before the list of attributes. Defaults to \code{'\\uA0('}
 #' @param attribute_sufix String that will be put before the list of attributes. Defaults to \code{')'}
@@ -411,7 +410,6 @@ format_item_list_en<-function(items, field_attributes, colname_with_includes=NUL
 #'   \item{included}{Boolean that determines whether a given item should be included in the list. This allows for the inverted string ("all cases except for ...")}
 #'   \item{prefix}{String appended before the item. Can be used to add Markdown quotes \code{'`'}}
 #'   \item{suffix}{String appended behind the item. Can be used to add Markdown quotes \code{'`'}}
-#'   \item{}
 #' }
 #' @param attribute_prefix String that will be put before the list of attributes. Defaults to \code{'\uA0('}
 #' @param attribute_sufix String that will be put before the list of attributes. Defaults to \code{')'}

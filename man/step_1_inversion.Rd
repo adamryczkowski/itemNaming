@@ -30,7 +30,6 @@ Function takes arguments: \code{item_numeral}, \code{all_items_count}, \code{sel
   \item{included}{Boolean that determines whether a given item should be included in the list. This allows for the inverted string ("all cases except for ...")}
   \item{prefix}{String appended before the item. Can be used to add Markdown quotes \code{'`'}}
   \item{suffix}{String appended behind the item. Can be used to add Markdown quotes \code{'`'}}
-  \item{}
 }}
 
 \item{attribute_prefix}{String that will be put before the list of attributes. Defaults to \code{'\\uA0('}}

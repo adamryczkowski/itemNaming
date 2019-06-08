@@ -26,7 +26,7 @@
 #' @param txt_attribute_separator_last Simmilar to \code{txt_separator_last}, but for the attributes of a single item (if there are any). Defaults to "\\uA0and ".
 #' @param txt_attribute_prefix String that gets pasted at the beginning of the attribute list. Defaults to "\\ua0(".
 #' @param txt_attribute_suffix String that gets pasted at the beginning of the attribute list. Defaults to ")".
-#' @param txt_attribute_bare_quote If the attribute name is available only in its internal name (its label is not specified), this string will get pasted before and after. Defaults to markdown code "`". This may be extended in future to allow formatting in different markup languages, which don't use symmetric quotes, like LaTeX (\code{"\\verbatim{"} and \\code{"}"}).
+#' @param txt_attribute_bare_quote If the attribute name is available only in its internal name (its label is not specified), this string will get pasted before and after. Defaults to markdown code "`". This may be extended in future to allow formatting in different markup languages, which don't use symmetric quotes, like LaTeX (\code{"\\verbatim\{"} and \\code{"\}"}).
 #' @param txt_attribute_label_quote The same as \code{txt_attribute_bare_quote} but for labelled attributes. Defaults to empty string.
 #' @param txt_attribute_infix The string that will be inserted between the attribute name and its value. Defaults to ":\\uA0".
 #'
