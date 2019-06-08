@@ -35,7 +35,7 @@ generic_df_formatter_gen(item_numeral = English_numeral$new(singular =
 
 \item{txt_attribute_separator}{Simmilar to \code{txt_separator}, but for the attributes of a single item (if there are any). Defaults to ", ".}
 
-\item{txt_attribute_separator_last}{Simmilar to \code{txt_separator_last}, but for the attributes of a single item (if there are any). Defaults to "\uA0and ".}
+\item{txt_attribute_separator_last}{Simmilar to \code{txt_separator_last}, but for the attributes of a single item (if there are any). Defaults to "\\uA0and ".}
 
 \item{txt_attribute_prefix}{String that gets pasted at the beginning of the attribute list. Defaults to "\\ua0(".}
 
