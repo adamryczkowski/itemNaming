@@ -26,7 +26,7 @@ vector_formatter_df_gen(variable_numeral = English_numeral$new(singular =
 
 \item{txt_attribute_separator_last}{Simmilar to \code{txt_separator_last}, but for the attributes of a single item (if there are any). Defaults to "\uA0and ".}
 
-\item{txt_attribute_prefix}{String that gets pasted at the beginning of the attribute list. Defaults to "\ua0(".}
+\item{txt_attribute_prefix}{String that gets pasted at the beginning of the attribute list. Defaults to "\\ua0(".}
 
 \item{txt_attribute_suffix}{String that gets pasted at the beginning of the attribute list. Defaults to ")".}
 
@@ -34,7 +34,7 @@ vector_formatter_df_gen(variable_numeral = English_numeral$new(singular =
 
 \item{txt_attribute_label_quote}{The same as \code{txt_attribute_bare_quote} but for labelled attributes. Defaults to empty string.}
 
-\item{txt_attribute_infix}{The string that will be inserted between the attribute name and its value. Defaults to ":\uA0".}
+\item{txt_attribute_infix}{The string that will be inserted between the attribute name and its value. Defaults to ":\\uA0".}
 }
 \value{
 Closure that takes a vector and produces a formatted string.

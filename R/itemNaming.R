@@ -21,14 +21,14 @@
 #' @param max_explicit_items_count Maximal number of items to be ever displayed in comma separated list. Ellipsis notation will be used, if number of items exceed this value.
 #' @param number_of_elements_around_ellipsis Number of elements around the actual ellipsis, when the ellipsis is used. Must be a two element integer vector. Defaults to \code{c(3,2)} to produce text like "item1, item2, item3, 5 items more, item9 and item10"
 #' @param txt_separator String that separates list elements for all but last item. Defaults to ", ".
-#' @param txt_spearator_last String that separates two last list elements. Defaults to "\uA0and ". \uA0 is a unicode for non-breakable space.
+#' @param txt_spearator_last String that separates two last list elements. Defaults to "\\uA0and ". \\uA0 is a unicode for non-breakable space.
 #' @param txt_attribute_separator Simmilar to \code{txt_separator}, but for the attributes of a single item (if there are any). Defaults to ", ".
 #' @param txt_attribute_separator_last Simmilar to \code{txt_separator_last}, but for the attributes of a single item (if there are any). Defaults to "\uA0and ".
-#' @param txt_attribute_prefix String that gets pasted at the beginning of the attribute list. Defaults to "\ua0(".
+#' @param txt_attribute_prefix String that gets pasted at the beginning of the attribute list. Defaults to "\\ua0(".
 #' @param txt_attribute_suffix String that gets pasted at the beginning of the attribute list. Defaults to ")".
 #' @param txt_attribute_bare_quote If the attribute name is available only in its internal name (its label is not specified), this string will get pasted before and after. Defaults to markdown code "`". This may be extended in future to allow formatting in different markup languages, which don't use symmetric quotes, like LaTeX (\code{"\verbatim{}" and \code{"}"}).
 #' @param txt_attribute_label_quote The same as \code{txt_attribute_bare_quote} but for labelled attributes. Defaults to empty string.
-#' @param txt_attribute_infix The string that will be inserted between the attribute name and its value. Defaults to ":\uA0".
+#' @param txt_attribute_infix The string that will be inserted between the attribute name and its value. Defaults to ":\\uA0".
 #'
 #' @return A closure that turns a data.frame into a formatted list (as string)
 #' @export
